@@ -43,32 +43,34 @@
   <script>
     const apiKey = 'c882b0b743ba294f3ab46c8069206b54';
 
-    async function searchCity() {
-      const city = document.getElementById('cityInput').value;
-      if (!city) {
-        alert('Please enter a city name.');
-        return;
-      }
+    async function getWeather() {
+          const city = document.getElementById('cityInput').value;
+          if (!city) {
+            alert('Please enter a city name');
+            return;
+          }
 
-	const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+          const weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`; // Metric units for Celsius
 
-	      try {
-	        const response = await fetch(weatherUrl);
-	        if (!response.ok) {
-	          throw new Error('City not found');
-	        }
+          const response = await fetch(weatherUrl);
+          const data = await response.json();
 
-	        const data = await response.json();
-	        const weatherDescription = data.weather[0].description;
-	        const temperature = data.main.temp;
+          const results = document.getElementById('results');
+          results.innerHTML = ''; // Clear previous results
 
-	        const results = document.getElementById('results');
-	        results.innerHTML = `<p>In ${city}, it's currently ${weatherDescription} with ${temperature}°C.</p>`;
-	      } catch (error) {
-	        document.getElementById('results').innerHTML = `<p>Yo try again.</p>`;
-	      }
-	    }
-	  </script>
+          // Check if the city was found and display the weather
+          if (data.cod === '200') {
+            const temp = data.list[0].main.temp;
+            const weather = data.list[0].weather[0].description;
+            const date = new Date(data.list[0].dt * 1000).toLocaleString(); // Convert timestamp to readable date
 
-</body>
-</html>
+            results.innerHTML = `<p>Weather in ${city}:</p>
+                                 <p>${date} - ${weather} - ${temp}°C</p>`;
+          } else {
+            results.innerHTML = `<p>City not found. Please try again.</p>`;
+          }
+        }
+      </script>
+
+    </body>
+    </html>
