@@ -50,27 +50,30 @@
             return;
           }
 
-          const weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`; // Metric units for Celsius
+	    const weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
 
-          const response = await fetch(weatherUrl);
-          const data = await response.json();
+	      try {
+	        const response = await fetch(weatherUrl);
+	        const data = await response.json();
 
-          const results = document.getElementById('results');
-          results.innerHTML = ''; // Clear previous results
+	        const results = document.getElementById('results');
+	        results.innerHTML = ''; // Clear previous results
 
-          // Check if the city was found and display the weather
-          if (data.cod === '200') {
-            const temp = data.list[0].main.temp;
-            const weather = data.list[0].weather[0].description;
-            const date = new Date(data.list[0].dt * 1000).toLocaleString(); // Convert timestamp to readable date
+	        if (data.cod === '200') {
+	          const temp = data.list[0].main.temp;
+	          const weather = data.list[0].weather[0].description;
+	          const date = new Date(data.list[0].dt * 1000).toLocaleString();
 
-            results.innerHTML = `<p>Weather in ${city}:</p>
-                                 <p>${date} - ${weather} - ${temp}°C</p>`;
-          } else {
-            results.innerHTML = `<p>City not found. Please try again.</p>`;
-          }
-        }
+	          results.innerHTML = `<p>Weather in ${city}:</p>
+	                               <p>${date} - ${weather} - ${temp}°C</p>`;
+	        } else {
+	          results.innerHTML = `<p>City not found. Please try again.</p>`;
+	        }
+	      } catch (error) {
+	        console.error(error);
+	        document.getElementById('results').innerHTML = `<p>Error retrieving weather. Try again later.</p>`;
+	      }
+	    }
       </script>
-
     </body>
     </html>
