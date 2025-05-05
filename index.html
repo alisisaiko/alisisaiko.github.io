@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
-<header>
+<head>
 <meta charset="UTF-8">
-  <title>My Bucket List</title>
+  <title>weather fit check</title>
   <style>
     body {
       background-color: pink;
@@ -30,9 +30,10 @@
       margin-top: 20px;
     }
   </style>
-  <body>
+</head>
+<body>
 
-  <h1>Places I Want to Visit</h1>
+  <h1>is it giving sunny?</h1>
 
   <input id="cityInput" placeholder="Type a city!!" />
   <button onclick="searchCity()">Search</button>
@@ -40,7 +41,7 @@
   <div id="results"></div>
 
   <script>
-    const apiKey = '0db4244d05msh9607e2dc3dbf452p15bc44jsndbc902e235de';
+    const apiKey = 'c882b0b743ba294f3ab46c8069206b54';
 
     async function searchCity() {
       const city = document.getElementById('cityInput').value;
@@ -49,35 +50,23 @@
         return;
       }
 
-      const geoUrl = `https://opentripmap-places-v1.p.rapidapi.com/en/places/geoname?name=${city}`;
-      const geoRes = await fetch(geoUrl, {
-        headers: {
-          'x-rapidapi-host': 'opentripmap-places-v1.p.rapidapi.com',
-          'x-rapidapi-key': apiKey
-        }
-      });
-      const geoData = await geoRes.json();
-      const { lat, lon } = geoData;
+      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-      const placesUrl = `https://opentripmap-places-v1.p.rapidapi.com/en/places/radius?radius=5000&lon=${lon}&lat=${lat}&limit=5`;
-      const placesRes = await fetch(placesUrl, {
-        headers: {
-          'x-rapidapi-host': 'opentripmap-places-v1.p.rapidapi.com',
-          'x-rapidapi-key': apiKey
+      try {
+        const response = await fetch(weatherUrl);
+        if (!response.ok) {
+          throw new Error('City not found');
         }
-      });
-      const placesData = await placesRes.json();
 
-      const results = document.getElementById('results');
-      results.innerHTML = ''; // clear previous results
+        const data = await response.json();
+        const weatherDescription = data.weather[0].description;
+        const temperature = data.main.temp;
 
-      placesData.features.forEach(place => {
-        if (place.properties.name) {
-          const p = document.createElement('p');
-          p.textContent = place.properties.name;
-          results.appendChild(p);
-        }
-      });
+        const results = document.getElementById('results');
+        results.innerHTML = `<p>In ${city}, it's currently ${weatherDescription} with ${temperature}°C.</p>`;
+      } catch (error) {
+        document.getElementById('results').innerHTML = `<p>Oops! Couldn't find that city. Try again.</p>`;
+      }
     }
   </script>
 
