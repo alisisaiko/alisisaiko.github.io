@@ -50,25 +50,25 @@
         return;
       }
 
-      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+	const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-      try {
-        const response = await fetch(weatherUrl);
-        if (!response.ok) {
-          throw new Error('City not found');
-        }
+	      try {
+	        const response = await fetch(weatherUrl);
+	        if (!response.ok) {
+	          throw new Error('City not found');
+	        }
 
-        const data = await response.json();
-        const weatherDescription = data.weather[0].description;
-        const temperature = data.main.temp;
+	        const data = await response.json();
+	        const weatherDescription = data.weather[0].description;
+	        const temperature = data.main.temp;
 
-        const results = document.getElementById('results');
-        results.innerHTML = `<p>In ${city}, it's currently ${weatherDescription} with ${temperature}°C.</p>`;
-      } catch (error) {
-        document.getElementById('results').innerHTML = `<p>Oops! Couldn't find that city. Try again.</p>`;
-      }
-    }
-  </script>
+	        const results = document.getElementById('results');
+	        results.innerHTML = `<p>In ${city}, it's currently ${weatherDescription} with ${temperature}°C.</p>`;
+	      } catch (error) {
+	        document.getElementById('results').innerHTML = `<p>Yo try again.</p>`;
+	      }
+	    }
+	  </script>
 
 </body>
 </html>
