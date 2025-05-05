@@ -38,10 +38,10 @@
 </head>
 <body>
 
-  <h1>is it giving sunny?</h1>
+  <h1>is it giving sunny blue sky?</h1>
 
   <input id="cityInput" placeholder="Type a city!!" />
-  <button onclick="searchCity()">Search</button>
+  <button onclick="searchCity()">search</button>
 
   <div id="results"></div>
 
@@ -64,7 +64,7 @@
         );
 
         if (!response.ok) {
-          throw new Error('City Not Found');
+          throw new Error('yo try again');
         }
 
         const data = await response.json();
