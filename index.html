@@ -2,98 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Weather Fit Check</title>
+  <title>meiqikuai</title>
   <style>
     body {
-      background-color: pink;
-      font-family: Arial, sans-serif;
+      background-color: black;
+      font-family: calibri, sans-serif;
       text-align: center;
       padding: 40px;
     }
 
     h1 {
-      color: black;
+      color: white;
+	margin: 0px;
     }
 
-    h2 {
-      color: grey;
+    h3 {
+      color: white;
+	top-margin: 10px;
     }
 
-    input {
-      padding: 8px;
-      font-size: 14px;
-    }
-
-    button {
-      padding: 8px 12px;
-      font-size: 14px;
-      background-color: white;
-      cursor: pointer;
-    }
-
-    #results {
-      margin-top: 20px;
-    }
-
-    .weatherResult {
-      margin: 10px 0;
-    }
+   h4 {
+	   color: white;
+	   margin: 10px;
+   }
+   h5 {
+	   color: white;
+	   margin: 10px;
+   }
   </style>
 </head>
 <body>
 
-  <h1>is it giving sunny blue sky?</h1>
-  <p><a href="https://alisisaiko.github.io/alisisaiko.github.io-temp/">Temperature Converter</a></p>
-
-  <input id="cityInput" placeholder="Type a city!!" />
-  <button onclick="searchCity()">search</button>
-
-  <div id="results"></div>
-
-  <script>
-    const API_KEY = '64b27af1317ca71033aee18c2387b5ee';
-
-    async function searchCity() {
-      const cityInput = document.getElementById("cityInput");
-      const weatherResult = document.getElementById("results");
-      const city = cityInput.value.trim();
-
-      if (!city) {
-        weatherResult.innerHTML = '<p>Please enter a city name.</p>';
-        return;
-      }
-
-      try {
-        const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=imperial`
-        );
-
-        if (!response.ok) {
-          throw new Error('yo try again');
-        }
-
-        const data = await response.json();
-
-        weatherResult.innerHTML = `
-          <h2>${data.name}, ${data.sys.country}</h2>
-          <div class="weatherResult">
-            <p>Temperature: ${data.main.temp}°F</p>
-          </div>
-          <div class="weatherResult">
-            <p>Weather: ${data.weather[0].description}</p>
-          </div>
-          <div class="weatherResult">
-            <p>Humidity: ${data.main.humidity}%</p>
-          </div>
-          <div class="weatherResult">
-            <p>Wind Speed: ${data.wind.speed} m/s</p>
-          </div>
-        `;
-      } catch (error) {
-        weatherResult.innerHTML = `<p>Error: ${error.message}</p>`;
-      }
-    }
-  </script>
-
+  <h1>things u do that make me smile inside</h1>
+  <h3>rot here before u sleep ily :) </h2>
+	  <p>
+		  <h4>june 28 2025</h4>
+		  <h5>when u were gving me a house tour n u were waving at urself. <p>when u got me iced nola :)<p>the fact that u can only cook pasta.<p>when u were just singing w ur guitar<p>u eating jondejuice n u sounding like a cat <p>just looking at u in general :) ily</h5>
 </body>
 </html>
