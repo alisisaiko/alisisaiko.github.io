@@ -16,7 +16,7 @@
     h1 {
       margin: 0 0 4px 0;
       font-size: 1.5em;
-	color: white;
+      color: white;
     }
 
     h4 {
@@ -25,12 +25,12 @@
       color: white;
       font-size: 1em;
     }
-    
+
     h5 {
       margin: 0 0 10px 0;
       font-weight: normal;
       color: white;
-      font-size: 1em;
+      font-size: 0.8em;
     }
 
     p {
@@ -48,17 +48,51 @@
     a:hover {
       color: #ff69b4;
     }
+
+    #content {
+      display: none;
+    }
   </style>
 </head>
 <body>
 
-  <h1>things u do that make me smile inside</h1>
-  <h3>rot here before u sleep ily :) </h2>
-	  <p>
-		  <h4>june 28 2025</h4>
-		  <h5>when u were gving me a house tour n u were waving at urself. <p>when u got me iced nola :)<p>the fact that u can only cook pasta.<p>when u were just singing w ur guitar<p>u eating jondejuice n u sounding like a cat <p>just looking at u in general :) ily</h5>
-	<p>		  
-	  <h4>june 29 2025</h4>
-	  <h5>today is giving entry dayyy lmao anyway. Was just thinking. <p>seeing you happy esp u talking abt ur family really made me happy like u fully fcking needed this and u deserve this break incase it's in the back of ur head to study or some shit NOOO U NEED THIS BREAK OKE. <P>but yea i just am realizing how much i love spending my mornings talking to you cus ure so fcking weird n jokes n im just i know im so fucked. <p>incase u forgor, i love u and miss u n dont forget about my vlog :)</h5>
+  <h3>today's quiz: whas my second dog's name</h3>
+  <input type="text" id="answerInput" placeholder="type here">
+  <button onclick="checkAnswer()">submit</button>
+
+  <div id="content">
+    <h1>things u do that make me smile inside</h1>
+    <h3>rot here before u sleep ily :) </h3>
+
+    <h4>june 28 2025</h4>
+    <h5>
+      when u were gving me a house tour n u were waving at urself. <p>
+      when u got me iced nola :)<p>
+      the fact that u can only cook pasta.<p>
+      when u were just singing w ur guitar<p>
+      u eating jondejuice n u sounding like a cat <p>
+      just looking at u in general :) ily
+    </h5>
+
+    <h4>june 29 2025</h4>
+    <h5>
+      today is giving entry dayyy lmao anyway. Was just thinking. <p>
+      seeing you happy esp u talking abt ur family really made me happy like u fully fcking needed this and u deserve this break incase it's in the back of ur head to study or some shit NOOO U NEED THIS BREAK OKE. <p>
+      but yea i just am realizing how much i love spending my mornings talking to you cus ure so fcking weird n jokes n im just i know im so fucked. <p>
+      incase u forgor, i love u and miss u n dont forget about my vlog :)
+    </h5>
+  </div>
+
+  <script>
+    function checkAnswer() {
+      var input = document.getElementById("answerInput").value.toLowerCase().trim();
+      if (input === "nobu") {
+        document.getElementById("content").style.display = "block";
+      } else {
+        alert("wrong lol try again");
+      }
+    }
+  </script>
+
 </body>
 </html>
