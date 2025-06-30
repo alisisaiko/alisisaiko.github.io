@@ -56,8 +56,8 @@
 </head>
 <body>
 
-  <h3>today's quiz: whas my second dog's name</h3>
-  <input type="text" id="answerInput" placeholder="type here">
+  <h3>today's quiz: best basketball team (just type in team name ex.pacers)</h3>
+  <input type="text" id="answerInput" placeholder="WHAAAAAAT">
   <button onclick="checkAnswer()">submit</button>
 
   <div id="content">
@@ -86,7 +86,7 @@
   <script>
     function checkAnswer() {
       var input = document.getElementById("answerInput").value.toLowerCase().trim();
-      if (input === "nobu") {
+      if (input === "lakers") {
         document.getElementById("content").style.display = "block";
       } else {
         alert("wrong lol try again");
