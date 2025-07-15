@@ -6,51 +6,104 @@
   <style>
     body {
       background-color: black;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Georgia', 'Courier New', monospace;
       margin: 0;
-      padding: 20px;
+      padding: 30px;
       color: white;
-      line-height: 1.3;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    h1, h3, h4, h5 {
+      font-family: 'Georgia', serif;
+      color: white;
     }
 
     h1 {
-      margin: 0 0 4px 0;
-      font-size: 1.5em;
-      color: white;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-size: 1.3em;
+      margin-bottom: 10px;
     }
 
     h4 {
-      margin: 0 0 10px 0;
-      font-weight: normal;
-      color: white;
-      font-size: 1em;
+      font-size: 1.1em;
+      margin-top: 20px;
+      margin-bottom: 5px;
     }
 
     h5 {
-      margin: 0 0 10px 0;
+      font-size: 1em;
       font-weight: normal;
-      color: white;
-      font-size: 0.8em;
+      margin: 0 0 15px 0;
     }
 
     p {
-      margin: 0;
-      max-width: 500px;
-      font-size: 0.95em;
+      margin: 0 0 10px 0;
+      max-width: 600px;
+    }
+
+    input[type="text"] {
+      padding: 5px 10px;
+      font-family: monospace;
+      border: none;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 6px 12px;
+      background-color: #fff;
+      color: black;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ff69b4;
+      color: white;
+    }
+
+    select {
+      margin-top: 10px;
+      padding: 5px 10px;
+      background-color: #222;
+      color: white;
+      border: 1px solid white;
+      font-family: 'Courier New', monospace;
+      border-radius: 4px;
     }
 
     a {
-      color: #000;
+      color: #ff69b4;
       text-decoration: underline dotted;
       font-style: italic;
     }
 
     a:hover {
-      color: #ff69b4;
+      color: #fff;
+    }
+
+    .entry {
+      margin-top: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed #444;
     }
 
     #content {
       display: none;
+      margin-top: 30px;
+    }
+
+    label {
+      font-size: 1em;
+      margin-right: 10px;
     }
   </style>
 </head>
@@ -87,6 +140,7 @@
 
     <div id="entries">
       <div id="june28" class="entry" style="display: none;">
+		<p>
         <h4>june 28 2025</h4>
         <h5>
           when u were gving me a house tour n u were waving at urself. <p>
@@ -201,24 +255,25 @@ today's entry is just giving a solid reminder to touch de grass ya know. solid r
 </div>
 
  <script>
-     function checkAnswer() {
-       var input = document.getElementById("answerInput").value.toLowerCase().trim();
-       if (input === "10") {
-         document.getElementById("content").style.display = "block";
-       } else {
-         alert("im disappointed.");
-       }
-     }
+    function checkAnswer() {
+      var input = document.getElementById("answerInput").value.toLowerCase().trim();
+      if (input === "10") {
+        document.getElementById("content").style.display = "block";
+      } else {
+        alert("im disappointed.");
+      }
+    }
 
-     function showEntry() {
-       const entries = document.querySelectorAll('.entry');
-       entries.forEach(e => e.style.display = 'none');
+    function showEntry() {
+      const entries = document.querySelectorAll('.entry');
+      entries.forEach(e => e.style.display = 'none');
 
-       const selected = document.getElementById('entrySelector').value;
-       if (selected) {
-         document.getElementById(selected).style.display = 'block';
-       }
-     }
-   </script>
- </body>
+      const selected = document.getElementById('entrySelector').value;
+      if (selected) {
+        const selectedEntry = document.getElementById(selected);
+        if (selectedEntry) selectedEntry.style.display = 'block';
+      }
+    }
+  </script>
+</body>
 </html>
