@@ -3,23 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>formeiqikuai</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
-      background-color: black;
+      background: linear-gradient(135deg, #181824 40%, #221a2d 100%);
       font-family: 'Georgia', 'Courier New', monospace;
       margin: 0;
       padding: 30px;
       color: white;
       line-height: 1.6;
       font-size: 16px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 30px auto;
+      background: rgba(24, 24, 24, 0.85);
+      border-radius: 18px;
+      padding: 40px 30px 30px 30px;
+      box-shadow: 0 8px 32px 0 rgba(0,0,0,0.5);
+      border: 1.5px solid #444;
     }
 
     h1, h3, h4, h5 {
       font-family: 'Georgia', serif;
-      color: white;
+      text-shadow: 0px 2px 12px #ff69b488, 0 1px 0 #222;
     }
 
     h1 {
+      color: #ff69b4;
       font-size: 2em;
       margin-bottom: 10px;
     }
@@ -47,15 +60,23 @@
     }
 
     input[type="text"] {
-      padding: 5px 10px;
+      padding: 7px 14px;
       font-family: monospace;
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
       margin-right: 10px;
+      background: #272730;
+      color: white;
+      transition: box-shadow 0.2s;
+    }
+    input[type="text"]:focus {
+      box-shadow: 0 0 7px #ff69b4, 0 0 3px #fff;
+      outline: none;
+      background: #22202A;
     }
 
     button {
-      padding: 6px 12px;
+      padding: 7px 16px;
       background-color: #fff;
       color: black;
       border: none;
@@ -63,21 +84,33 @@
       font-family: 'Courier New', monospace;
       font-weight: bold;
       cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      font-size: 1em;
     }
-
     button:hover {
       background-color: #ff69b4;
       color: white;
+      box-shadow: 0 0 9px #ff69b4, 0 0 3px #fff;
     }
 
     select {
       margin-top: 10px;
-      padding: 5px 10px;
+      padding: 6px 12px;
       background-color: #222;
       color: white;
       border: 1px solid white;
       font-family: 'Courier New', monospace;
       border-radius: 4px;
+      transition: box-shadow 0.2s;
+    }
+    select:focus {
+      box-shadow: 0 0 7px #ff69b4, 0 0 3px #fff;
+      outline: none;
+    }
+
+    label {
+      font-size: 1em;
+      margin-right: 10px;
     }
 
     a {
@@ -85,67 +118,102 @@
       text-decoration: underline dotted;
       font-style: italic;
     }
-
     a:hover {
       color: #fff;
     }
 
     .entry {
-      margin-top: 20px;
-      padding-bottom: 20px;
-      border-bottom: 1px dashed #444;
+      background: rgba(60, 60, 70, 0.8);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 18px;
+      border: 1px solid #ff69b433;
+      box-shadow: 0 2px 8px #1112;
+      display: none;
+      animation: fadeIn 0.7s;
     }
 
+    /* Fade in for main content */
     #content {
       display: none;
       margin-top: 30px;
+      opacity: 0;
+      transition: opacity 0.8s;
+    }
+    #content.show {
+      display: block;
+      opacity: 1;
     }
 
-    label {
-      font-size: 1em;
-      margin-right: 10px;
+    /* Modern scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      background: #2a2a37;
     }
+    ::-webkit-scrollbar-thumb {
+      background: #ff69b4;
+      border-radius: 4px;
+    }
+
+    /* Keyframes for fade-in */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        padding: 20px 4vw;
+        max-width: 97vw;
+      }
+      input, select, button {
+        width: 100%;
+        margin-top: 8px;
+        font-size: 1em;
+      }
+    }
+
   </style>
 </head>
 <body>
+  <div class="container">
+    <h3>is mikalea gonna let alicia drive otw back to bos</h3>
+    <input type="text" id="answerInput" placeholder="WHAAAAAAT">
+    <button onclick="checkAnswer()">submit</button>
 
-  <h3>is mikalea gonna let alicia drive otw back to bos</h3>
-  <input type="text" id="answerInput" placeholder="WHAAAAAAT">
-  <button onclick="checkAnswer()">submit</button>
+    <div id="content">
+      <h1>things u do that make me smile inside</h1>
+      <h3>rot here before u sleep ily :)</h3>
 
-  <div id="content">
-    <h1>things u do that make me smile inside</h1>
-    <h3>rot here before u sleep ily :)</h3>
-
-    <label for="entrySelector">pickkkkk u slow human:</label>
-    <select id="entrySelector" onchange="showEntry()">
-      <option value="">-- choose a fookin date --</option>
-      <option value="june28">june 28 2025</option>
-      <option value="june29">june 29 2025</option>
-      <option value="june30">june 30 2025</option>
-      <option value="july1">july 1 2025</option>
-      <option value="july2">july 2 2025</option>
-      <option value="july3">july 3 2025</option>
-      <option value="july4">july 4 2025</option>
-      <option value="july5">july 5 2025</option>
-      <option value="july6">july 6 2025</option>
-      <option value="july7">july 7 2025</option>
-      <option value="july8">july 8 2025</option>
-      <option value="july9">july 9 2025</option>
-      <option value="july11">july 11 2025</option>
-      <option value="july12">july 12 2025</option>
-      <option value="july13">july 13 2025</option>
-      <option value="july14">july 14 2025</option>
-	<option value="july15">july 15 2025</option>
-	<option value="july16">july 16 2025</option>
-	<option value="july17">july 17 2025</option>
-	<option value="july18">july 18 2025</option>
-	<option value="july19">july 19 2025</option>
-	<option value="july20">july 20 2025</option>
-	<option value="july21">july 21 2025</option>
-	<option value="july22">july 22 2025</option>
-	<option value="july23">july 23 2025</option>
-    </select>
+      <label for="entrySelector">pickkkkk u slow human:</label>
+      <select id="entrySelector" onchange="showEntry()">
+        <option value="">-- choose a fookin date --</option>
+        <option value="june28">june 28 2025</option>
+        <option value="june29">june 29 2025</option>
+        <option value="june30">june 30 2025</option>
+        <option value="july1">july 1 2025</option>
+        <option value="july2">july 2 2025</option>
+        <option value="july3">july 3 2025</option>
+        <option value="july4">july 4 2025</option>
+        <option value="july5">july 5 2025</option>
+        <option value="july6">july 6 2025</option>
+        <option value="july7">july 7 2025</option>
+        <option value="july8">july 8 2025</option>
+        <option value="july9">july 9 2025</option>
+        <option value="july11">july 11 2025</option>
+        <option value="july12">july 12 2025</option>
+        <option value="july13">july 13 2025</option>
+        <option value="july14">july 14 2025</option>
+        <option value="july15">july 15 2025</option>
+        <option value="july16">july 16 2025</option>
+        <option value="july17">july 17 2025</option>
+        <option value="july18">july 18 2025</option>
+        <option value="july19">july 19 2025</option>
+        <option value="july20">july 20 2025</option>
+        <option value="july21">july 21 2025</option>
+        <option value="july22">july 22 2025</option>
+        <option value="july23">july 23 2025</option>
+      </select>
 
     <div id="entries">
       <div id="june28" class="entry" style="display: none;">
@@ -321,8 +389,9 @@ you feel like comfort n peace like a good warm cuddle in winter like ure just ye
  <script>
     function checkAnswer() {
       var input = document.getElementById("answerInput").value.toLowerCase().trim();
+      const content = document.getElementById("content");
       if (input === "yes") {
-        document.getElementById("content").style.display = "block";
+        content.classList.add("show");
       } else {
         alert("im disappointed.");
       }
